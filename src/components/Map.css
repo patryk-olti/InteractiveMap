@@ -13,12 +13,35 @@
 
 .dot{
     position: absolute;
-    top: 50%;
-    left: 19%;
     width: 20px;
     height: 20px;
 
     box-shadow: 0px 0px 0px 5px white, 0px 0px 0px 8px black;
     border-radius: 50%;
     background-color: black;
+}
+
+.active{
+    animation: blink 2s infinite;
+}
+
+.wroclaw{
+    top: 50%;
+    left: 19%;
+}
+
+.szczecin{
+    top: 15%;
+    left: 5%;
+}
+
+.gdansk{
+    top: 8%;
+    left: 50%;
+}
+
+@keyframes blink{
+    0%{ box-shadow: 0px 0px 0px 5px white, 0px 0px 0px 8px black; }
+    50%{ box-shadow: 0px 0px 0px 5px white, 0px 0px 0px 10px red; }
+    100%{ box-shadow: 0px 0px 0px 5px white, 0px 0px 0px 8px black; }
 }
