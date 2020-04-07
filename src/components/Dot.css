@@ -1,0 +1,54 @@
+.dot{
+    position: absolute;
+    width: 20px;
+    height: 20px;
+
+    box-shadow: 0px 0px 0px 5px white, 0px 0px 0px 8px black;
+    border-radius: 50%;
+    background-color: black;
+}
+
+.active{
+    animation: blink 2s infinite;
+}
+
+.wroclaw{
+    top: 60%;
+    left: 25%;
+}
+
+.szczecin{
+    top: 18%;
+    left: 5%;
+}
+
+.gdansk{
+    top: 11%;
+    left: 50%;
+}
+
+.bydgoszcz{
+    top: 28%;
+    left: 38%;
+}
+
+.poznan{
+    top: 38%;
+    left: 26%;
+}
+
+.krakow{
+    top: 78%;
+    left: 56%;
+}
+
+.lublin{
+    top: 63%;
+    left: 85%;
+}
+
+@keyframes blink{
+    0%{ box-shadow: 0px 0px 0px 5px white, 0px 0px 0px 8px black; }
+    50%{ box-shadow: 0px 0px 0px 5px white, 0px 0px 0px 10px red; background-color: red;}
+    100%{ box-shadow: 0px 0px 0px 5px white, 0px 0px 0px 8px black; }
+}

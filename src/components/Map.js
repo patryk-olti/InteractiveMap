@@ -2,6 +2,7 @@ import React from 'react';
 import map from "./img/mapa.png";
 import "./Map.css";
 import Information from './Information';
+import Dot from './Dot';
 
 class Map extends React.Component{
 
@@ -15,15 +16,14 @@ class Map extends React.Component{
         const dots = [...document.querySelectorAll('.dot')];
         let variable = this.state.iteration;
 
-        if((variable+1) >= this.state.maxIteration){
+        if(variable >= (this.state.maxIteration-1)){
             variable = 0;
         }else{
-            variable += 1;
+            variable = variable + 1;
         }
 
         dots.forEach((item, index) => {
             item.classList.remove('active');
-
             if(index === variable){
                 item.classList.add('active');
             }
@@ -32,28 +32,39 @@ class Map extends React.Component{
         this.setState({
             iteration: variable
         })
-
     }
 
     componentDidMount(){
+
         fetch('data.json')
         .then(response => response.json())
         .then(data => {
-            setInterval( this.changeActive() , 2000);
+
+            setInterval(() => {
+                this.changeActive();
+            }, 6000);
 
             this.setState({
                 base: data.devices,
                 maxIteration: [...data.devices].length
-            })
+            }) 
         })  
+        
+        setInterval( this.changeActive() , 1000);
     }
 
+
+
     render(){
+        
+        
         return (
             <div className="polandMap">
-    
-                <div className="dot wroclaw active"></div>
-                <div className="dot szczecin active"></div>
+
+               {this.state.base.length !== 0 ?  this.state.base.map(item => ( <Dot extendsClass = {item.city} /> )) 
+               : null
+            }
+
                 <img src={map} alt="map"/>
     
                 <Information />
