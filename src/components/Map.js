@@ -6,18 +6,32 @@ import Information from './Information';
 class Map extends React.Component{
 
     state = {
-        iteration: 1,
+        iteration: 0,
         maxIteration: 5,
         base: []
     }
 
     changeActive = () => {
-        const dots = document.querySelectorAll('.dot');
+        const dots = [...document.querySelectorAll('.dot')];
+        let variable = this.state.iteration;
 
-        dots.forEach(item => {
-            item.classList.toggle('active');
+        if((variable+1) >= this.state.maxIteration){
+            variable = 0;
+        }else{
+            variable += 1;
+        }
+
+        dots.forEach((item, index) => {
+            item.classList.remove('active');
+
+            if(index === variable){
+                item.classList.add('active');
+            }
         });
 
+        this.setState({
+            iteration: variable
+        })
 
     }
 
@@ -28,14 +42,13 @@ class Map extends React.Component{
             setInterval( this.changeActive() , 2000);
 
             this.setState({
-                base: data.devices
+                base: data.devices,
+                maxIteration: [...data.devices].length
             })
         })  
     }
 
     render(){
-        console.log(this.state.base);
-
         return (
             <div className="polandMap">
     
